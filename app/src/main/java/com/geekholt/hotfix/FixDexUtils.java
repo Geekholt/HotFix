@@ -1,6 +1,7 @@
 package com.geekholt.hotfix;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.File;
 import java.lang.reflect.Array;
@@ -17,7 +18,7 @@ import dalvik.system.PathClassLoader;
  */
 
 public class FixDexUtils {
-
+    private static final String TAG = "FixDexUtils";
     private static final String DEX_SUFFIX = ".dex";
     private static final String APK_SUFFIX = ".apk";
     private static final String JAR_SUFFIX = ".jar";
@@ -82,6 +83,7 @@ public class FixDexUtils {
                         null,// 加载dex时需要的库
                         pathLoader// 父类加载器
                 );
+                Log.i(TAG, "dex.getAbsolutePath() --> "+dex.getAbsolutePath());
                 // 3.合并
                 Object dexPathList = getPathList(dexLoader);
                 Object pathPathList = getPathList(pathLoader);
